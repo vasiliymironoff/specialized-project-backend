@@ -1,0 +1,71 @@
+=================================================
+|        COMMAND LINES TO LOAD APPLICATION      |
+=================================================
+
+1) create virtual environment
+
+$ python -m venv .venv
+
+2) activate virtual environment 
+
+$ .venv\bin\activate
+
+3) install packages 
+
+$ pip install django
+
+4) initialize the application environment
+
+$ django-admin startproject app
+
+$ cd app
+
+5) create the application folder
+
+$ python manage.py startapp mainApp
+
+6) to run web page 
+
+$ python manage.py runserver
+
+7) load the web page in the next url: 
+http://localhost:8000/
+
+8) to connect django with postgres
+
+$ pip install psycopg2
+
+9) modify in django file called settings.py in DATABASES settings
+$ python manage.py migrate
+$ python manage.py createsuperuser
+
+username: specuser
+email: holtech94@gmail.com
+pass: 12345
+10) check the database in admin
+
+$ python manage.py runserver 
+http://localhost:8000/admin
+
+
+11) from python backend, make updates in db
+
+$ python manage.py makemigrations
+$ python manage.py migrates
+$ python manage.py runserver
+
+13) push code to github repo 
+
+$ echo "# app_caption_generator" >> README.md
+$ git init 
+$ git remote add origin https://github.com/HoltechHard/CaptionGeneratorApp.git
+$ git add README.md 
+$ git commit -m "project description"
+$ git push origin master 
+
+14) make updating in github repo 
+
+$ git add ... 
+$ git commit -m "..." 
+$ git pull origin master
+$ git push origin master

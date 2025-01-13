@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="jumbotron">
+        <h3 style="text-align: center;" >Report of Image-Captions</h3>
+    </div>
+    <br>
+
+    <div class="row justify-content-center">
+        <div class="">
+            <img id="storedImage" src="{% static 'images/default.jpg' %}" class="rounded mx-auto d-block" width="450" height="275"><br><br>
+            <div id="text-description">
+                <p id="txtDescription" class="text-center">the text predicted...</p>
+            </div>
+        </div>
+    </div>
+    <br>
+
+    <table class="table">
+        <thead>
+            <tr class="table-primary">
+                <th>ID</th>
+                <th>Time of creation</th>
+                <th>Description</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for image in image_data %}
+            <tr>
+                <td>{{ image.id_image }}</td>
+                <td>{{ image.create_time }}</td>
+                <td>{{ image.description }}</td>
+                <td>
+                    <button type="button" class="btn btn-primary btn-sm">
+                        <i class="fa fa-eye" aria-hidden="true"></i> View
+                    </button> &nbsp;
+                    <button type="button" class="btn btn-danger btn-sm">
+                        <i class="fa fa-recycle" aria-hidden="true"></i> Clear
+                    </button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+
+<!-- include external javascript files -->
+<script src="{% static 'js/report.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="container">
+    <div class="row">
+        <h3>Summarization, classification and text-to-audio news text</h3>
+    </div>
+    <div class="row">
+        <div class="col">
+        <label for="news" class="form-label">Input text news</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form action="" id="myForm">
+                <div class="form-group">
+                        <textarea id="news" name="news" rows="10" cols="80">
+News text
+                        </textarea>
+                </div>
+                <br>
+                <button type="submit" id="btnPredict" class="btn btn-lg btn-primary btn-block"> Save and Predict
+                </button>    
+            </form>
+           
+        </div>
+    </div>
+        
+    <br><br>
+    <div class="row">
+        <h5 id="category">The predicted category new...</h5>
+    </div>
+
+    <div class="row">
+        <p id="description">The predicted description new...</p>
+    </div>
+    
+    <div class="row">
+
+    </div>
+    
+</div>
+
+{% endblock %}
+
+{% block javascripts %}
+    
+<script src="{% static 'js/home.js' %}"></script>    
+
+{% endblock %}
