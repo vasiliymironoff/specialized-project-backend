@@ -42,7 +42,6 @@ def home(request):
         def query(texts):
             response = requests.post(api_url, headers=headers, json={"inputs": texts})
             return response.json()
-
        
         with open('model_lstm.pkl', 'rb') as dump_in:
             model_lstm = pickle.load(dump_in)
@@ -60,15 +59,19 @@ def home(request):
         #pipe = pipeline("text-to-speech", model="suno/bark-small")
         #output = pipe(f'{category} - {description}')
         #print(output)
-        path_audio = f'audios/{NewsData.objects.count()}.mp4'
+        #audio_data = output["audio"]
+        #sampling_rate = output["sampling_rate"]
 
+        #path_audio = f'./{NewsData.objects.count()}.wav'
+        #with open(path_audio, "wb") as f:
+        #   f.write(audio_data)
 
         # Сохраняем в базу данных
         news = NewsData(
             text=text,
             description=description,
             category=category,
-            path_audio=path_audio
+            path_audio=''
         )                
                         
         # Коммитим
@@ -85,27 +88,5 @@ def home(request):
 # load report.html
 def report(request):
     # take data from database
-    image_data = NewsData.objects.all()
-
-    if request.method == 'POST':
-        # take id_image from ajax
-        p_id_image = request.POST.get('id_filtered')        
-        
-        # query the row with corresponding id
-        try:
-            image_obj = ImageData.objects.get(id_image=p_id_image)
-            p_file_path = image_obj.file_path
-            p_description = image_obj.description
-            print('file: ', p_file_path)
-            print('description: ', p_description)
-
-            return JsonResponse({
-                'file_path': p_file_path,
-                'description': p_description
-            })
-        
-        except ImageData.DoesNotExist:
-            print('Image not found for id_image:', p_id_image)
-            return JsonResponse({'file_path': None, 'description': None})
-
-    return render(request, 'report.html', {'image_data': image_data})
+    news_data = NewsData.objects.all()
+    return render(request, 'report.html', {'news_data': news_data})
